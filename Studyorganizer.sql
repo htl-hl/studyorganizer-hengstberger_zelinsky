@@ -14,7 +14,7 @@ CREATE TABLE Users (
 
 CREATE TABLE Subjects (
     subjectID int PRIMARY KEY AUTO_INCREMENT,
-    subjectname varchar(255) NOT NULL,
+    subjectname varchar(255) NOT NULL
 );
 
 CREATE TABLE Assignments (
@@ -24,7 +24,7 @@ CREATE TABLE Assignments (
     isCompleted boolean,
     due_date date NOT NULL,
     userID int,
-    subjetctID int,
+    subjectID int,
     FOREIGN KEY (userID) REFERENCES Users(userID),
     FOREIGN KEY (subjectID) REFERENCES Subjects(subjectID)
 );
