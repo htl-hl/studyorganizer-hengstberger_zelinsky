@@ -11,6 +11,12 @@ CREATE TABLE Users (
     authKey varchar(255)
 );
 
+
+CREATE TABLE Subjects (
+    subjectID int PRIMARY KEY AUTO_INCREMENT,
+    subjectname varchar(255) NOT NULL,
+);
+
 CREATE TABLE Assignments (
     homeworkID int PRIMARY KEY AUTO_INCREMENT,
     title varchar(255) NOT NULL,
@@ -18,14 +24,9 @@ CREATE TABLE Assignments (
     isCompleted boolean,
     due_date date NOT NULL,
     userID int,
-    FOREIGN KEY (userID) REFERENCES Users(userID) 
-);
-
-CREATE TABLE Subjects (
-    subjectID int PRIMARY KEY AUTO_INCREMENT,
-    subjectname varchar(255) NOT NULL,
-    homeworkID int,
-    FOREIGN KEY (homeworkID) REFERENCES Assignments(homeworkID)
+    subjetctID int,
+    FOREIGN KEY (userID) REFERENCES Users(userID),
+    FOREIGN KEY (subjectID) REFERENCES Subjects(subjectID)
 );
 
 CREATE TABLE Teachers (
