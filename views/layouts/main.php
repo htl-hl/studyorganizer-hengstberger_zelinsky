@@ -41,11 +41,9 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
             'options' => ['class' => 'navbar-nav'],
             'items' => [
                     ['label' => 'Home', 'url' => ['/site/index']],
-                    ['label' => 'About', 'url' => ['/site/about']],
-                    ['label' => 'Contact', 'url' => ['/site/contact']],
                     ['label' => 'Assignments', 'url' => ['/assignments/index']],
-                    ['label' => 'Teachers', 'url' => ['/teachers/index']],
-                    ['label' => 'Subjects', 'url' => ['/subjects/index']],
+                    ['label' => 'AdminMain', 'url' => ['/site/adminmain']],
+                    ['label' => 'UserMain', 'url' => ['/site/usermain']],
                     Yii::$app->user->isGuest
                             ? ['label' => 'Login', 'url' => ['/site/login']]
                             : '<li class="nav-item">'
