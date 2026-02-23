@@ -4,12 +4,13 @@ use yii\helpers\Html;
 
 /** @var yii\web\View $this */
 /** @var app\models\Subjects $model */
+/** @var array $teachersList */
 
 $this->title = Yii::t('app', 'Update Subjects: {name}', [
-    'name' => $model->subjectID,
+    'name' => $model->subjectname,
 ]);
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Subjects'), 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $model->subjectID, 'url' => ['view', 'subjectID' => $model->subjectID]];
+$this->params['breadcrumbs'][] = ['label' => $model->subjectname, 'url' => ['view', 'subjectID' => $model->subjectID]];
 $this->params['breadcrumbs'][] = Yii::t('app', 'Update');
 ?>
 <div class="subjects-update">
@@ -18,6 +19,7 @@ $this->params['breadcrumbs'][] = Yii::t('app', 'Update');
 
     <?= $this->render('_form', [
         'model' => $model,
+        'teachersList' => $teachersList,
     ]) ?>
 
 </div>

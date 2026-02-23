@@ -4,9 +4,12 @@ namespace app\controllers;
 
 use app\models\Subjects;
 use app\models\SubjectsSearch;
+use app\models\Teachers;
+use yii\helpers\ArrayHelper;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use Yii;
 
 /**
  * SubjectsController implements the CRUD actions for Subjects model.
@@ -39,11 +42,9 @@ class SubjectsController extends Controller
     public function actionIndex()
     {
         $searchModel = new SubjectsSearch();
-        $dataProvider = $searchModel->search($this->request->queryParams);
 
         return $this->render('index', [
             'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
         ]);
     }
 
@@ -77,8 +78,12 @@ class SubjectsController extends Controller
             $model->loadDefaultValues();
         }
 
+        $teachers = Teachers::find()->all();
+        $teachersList = ArrayHelper::map($teachers, 'teacherID', 'teachername');
+
         return $this->render('create', [
             'model' => $model,
+            'teachersList' => $teachersList,
         ]);
     }
 
@@ -97,8 +102,12 @@ class SubjectsController extends Controller
             return $this->redirect(['view', 'subjectID' => $model->subjectID]);
         }
 
+        $teachers = Teachers::find()->all();
+        $teachersList = ArrayHelper::map($teachers, 'teacherID', 'teachername');
+
         return $this->render('update', [
             'model' => $model,
+            'teachersList' => $teachersList,
         ]);
     }
 

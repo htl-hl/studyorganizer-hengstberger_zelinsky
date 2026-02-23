@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\models\Subjects;
 use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
@@ -66,7 +67,10 @@ class SiteController extends Controller
 
     public function actionAdminmain()
     {
-        return $this->render('adminMain');
+        $subjects = Subjects::find()->with('teachers')->all();
+        return $this->render('adminMain', [
+            'subjects' => $subjects,
+        ]);
     }
 
     public function actionUsermain()
@@ -87,7 +91,11 @@ class SiteController extends Controller
 
         $model = new LoginForm();
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
-            return $this->goBack();
+            if (Yii::$app->user->identity->role === 'admin') {
+                return $this->redirect(['site/adminmain']);
+            } else {
+                return $this->redirect(['site/usermain']);
+            }
         }
 
         $model->password = '';
