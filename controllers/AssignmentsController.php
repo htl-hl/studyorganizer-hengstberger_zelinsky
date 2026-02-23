@@ -4,6 +4,9 @@ namespace app\controllers;
 
 use app\models\Assignments;
 use app\models\AssignmentsSearch;
+use app\models\Subjects;
+use app\models\User;
+use yii\helpers\ArrayHelper;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
