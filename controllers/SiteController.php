@@ -73,11 +73,6 @@ class SiteController extends Controller
         ]);
     }
 
-    public function actionUsermain()
-    {
-        return $this->render('userMain');
-    }
-
     /**
      * Login action.
      *

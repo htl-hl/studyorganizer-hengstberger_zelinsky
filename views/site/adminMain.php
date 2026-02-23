@@ -22,16 +22,20 @@ $this->title = 'AdminMain';
         <?php foreach ($subjects as $subject): ?>
             <div class="col-lg-3 col-md-6 col-sm-12 mt-4">
                 <div class="card">
-                    <div class="card-header"><?= $subject->subjectname?></div>
                     <div class="card-body">
-                        <?php foreach ($subject->teachers as $teacher): ?>
-                            <p><?= $teacher->teachername ?></p>
+                        <h5 class="card-title"><?= $subject->subjectname?></h5>
+                        <p class="card-text"> <?php foreach ($subject->teachers as $teacher): ?>
+                        <p><?= $teacher->teachername ?></p>
                         <?php endforeach; ?>
+                        </p>
                     </div>
-                    <div class="card-footer">
-                        <?= \yii\bootstrap5\Html::a($subject->editIconUpdate(), Url::to(['subjects/update', 'subjectID' => $subject->subjectID]), ['class' => 'btn btn-primary']) ?>
-                        <?= \yii\bootstrap5\Html::a($subject->deleteIconUpdate(), Url::to(['subjects/delete', 'subjectID' => $subject->subjectID]),
-                                ['class' => 'btn btn-danger', 'data-method' => 'POST', 'data-confirm' => 'Möchtest du das Fach wirklich löschen']) ?>
+                    <div class="card-footer d-flex justify-content-between align-items-center">
+                        <?= Html::a('To Subject', ['assignments/index', 'subjectID' => $subject->subjectID], ['class' => 'btn btn-primary']) ?>
+                        <div class="d-flex gap-2">
+                            <?= \yii\bootstrap5\Html::a($subject->editIconUpdate(), Url::to(['subjects/update', 'subjectID' => $subject->subjectID]), ['class' => 'btn btn-primary']) ?>
+                            <?= \yii\bootstrap5\Html::a($subject->deleteIconUpdate(), Url::to(['subjects/delete', 'subjectID' => $subject->subjectID]),
+                                    ['class' => 'btn btn-danger', 'data-method' => 'POST', 'data-confirm' => 'Möchtest du das Fach wirklich löschen']) ?>
+                        </div>
                     </div>
                 </div>
             </div>
