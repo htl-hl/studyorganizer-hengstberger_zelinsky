@@ -15,7 +15,11 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'subjectname')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'teacherIds')->checkboxList($teachersList) ?>
+    <?= $form->field($model, 'teacherIds')->checkboxList($teachersList, [
+            'itemOptions' => [
+                    'style' => 'transform: scale(1.5); margin-right: 5px;'
+            ]
+    ]) ?>
 
     <div class="form-group">
         <?= Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn btn-success']) ?>
