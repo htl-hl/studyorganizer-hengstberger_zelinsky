@@ -6,8 +6,6 @@ use yii\helpers\Html;
 /** @var app\models\Assignments $model */
 
 $this->title = Yii::t('app', 'Create Assignments');
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Assignments'), 'url' => ['index']];
-$this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="assignments-create">
 

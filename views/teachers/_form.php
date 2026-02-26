@@ -14,10 +14,10 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'teachername')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'isActive')->checkbox(['style' => 'transform: scale(1.5);']) ?>
+    <?= $form->field($model, 'isActive')->checkbox(['style' => 'transform: scale(1.5);', 'checked' => true]) ?>
 
     <div class="form-group">
-        <?= Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn btn-success']) ?>
+        <?= Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn btn-outline-secondary']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

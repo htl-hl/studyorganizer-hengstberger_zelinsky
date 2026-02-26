@@ -42,9 +42,11 @@ class SubjectsController extends Controller
     public function actionIndex()
     {
         $searchModel = new SubjectsSearch();
+        $dataProvider = $searchModel->search($this->request->queryParams);
 
         return $this->render('index', [
             'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
         ]);
     }
 
@@ -124,7 +126,7 @@ class SubjectsController extends Controller
     {
         $this->findModel($subjectID)->delete();
 
-        return $this->redirect(['index']);
+        return $this->redirect(['/site/adminmain']);
     }
 
     /**

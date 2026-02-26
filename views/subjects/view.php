@@ -7,8 +7,6 @@ use yii\widgets\DetailView;
 /** @var app\models\Subjects $model */
 
 $this->title = $model->subjectID;
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Subjects'), 'url' => ['index']];
-$this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 ?>
 <div class="subjects-view">
@@ -16,9 +14,9 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a(Yii::t('app', 'Update'), ['update', 'subjectID' => $model->subjectID], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a(Yii::t('app', 'Update'), ['update', 'subjectID' => $model->subjectID], ['class' => 'btn btn-outline-secondary']) ?>
         <?= Html::a(Yii::t('app', 'Delete'), ['delete', 'subjectID' => $model->subjectID], [
-            'class' => 'btn btn-danger',
+            'class' => 'btn btn-outline-secondary',
             'data' => [
                 'confirm' => Yii::t('app', 'Are you sure you want to delete this item?'),
                 'method' => 'post',
