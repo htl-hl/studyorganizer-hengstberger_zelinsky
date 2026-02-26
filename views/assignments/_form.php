@@ -20,10 +20,6 @@ use yii\bootstrap5\ActiveForm;
 
     <?= $form->field($model, 'due_date')->input('date', ['class' => 'form-control']) ?>
 
-    <?= $form->field($model, 'userID')->hiddenInput(['value' => 0])->label(false) ?>
-
-    <?= $form->field($model, 'subjectID')->hiddenInput(['value' => 0])->label(false) ?>
-
     <div class="form-group">
         <?= Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn btn-success']) ?>
     </div>
