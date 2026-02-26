@@ -84,6 +84,7 @@ class SubjectsController extends Controller
         return $this->render('create', [
             'model' => $model,
             'teachersList' => $teachersList,
+            'teachers' => $teachers,
         ]);
     }
 
@@ -108,6 +109,7 @@ class SubjectsController extends Controller
         return $this->render('update', [
             'model' => $model,
             'teachersList' => $teachersList,
+            'teachers' => $teachers,
         ]);
     }
 

@@ -32,7 +32,7 @@ class Teachers extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['isActive'], 'default', 'value' => null],
+            [['isActive'], 'default', 'value' => 1],
             [['teachername'], 'required'],
             [['isActive'], 'integer'],
             [['teachername'], 'string', 'max' => 255],
