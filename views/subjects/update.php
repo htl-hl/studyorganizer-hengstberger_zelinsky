@@ -5,6 +5,7 @@ use yii\helpers\Html;
 /** @var yii\web\View $this */
 /** @var app\models\Subjects $model */
 /** @var array $teachersList */
+/** @var app\models\Teachers[] $teachers */
 
 $this->title = Yii::t('app', 'Update Subjects: {name}', [
     'name' => $model->subjectname,
@@ -20,6 +21,7 @@ $this->params['breadcrumbs'][] = Yii::t('app', 'Update');
     <?= $this->render('_form', [
         'model' => $model,
         'teachersList' => $teachersList,
+            'teachers' => $teachers,
     ]) ?>
 
 </div>
