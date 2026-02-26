@@ -6,8 +6,6 @@ use yii\helpers\Html;
 /** @var app\models\Teachers $model */
 
 $this->title = Yii::t('app', 'Create Teachers');
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Teachers'), 'url' => ['index']];
-$this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="teachers-create">
 

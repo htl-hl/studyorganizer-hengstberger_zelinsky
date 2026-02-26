@@ -21,7 +21,7 @@ use yii\bootstrap5\ActiveForm;
     <?= $form->field($model, 'due_date')->input('date', ['class' => 'form-control']) ?>
 
     <div class="form-group">
-        <?= Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn btn-success']) ?>
+        <?= Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn btn-outline-secondary']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>
