@@ -14,7 +14,7 @@ $this->title = $model->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a(Yii::t('app', 'Update'), ['update', 'homeworkID' => $model->homeworkID], ['class' => 'btn-outline-secondary']) ?>
+        <?= Html::a(Yii::t('app', 'Update'), ['update', 'homeworkID' => $model->homeworkID], ['class' => 'btn btn-outline-secondary']) ?>
         <?= Html::a(Yii::t('app', 'Delete'), ['delete', 'homeworkID' => $model->homeworkID], [
             'class' => 'btn btn-outline-secondary',
             'data' => [

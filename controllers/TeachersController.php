@@ -40,10 +40,12 @@ class TeachersController extends Controller
     {
         $searchModel = new TeachersSearch();
         $dataProvider = $searchModel->search($this->request->queryParams);
+        $teachers = Teachers::find()->all();
 
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+            'teachers' => $teachers,
         ]);
     }
 
