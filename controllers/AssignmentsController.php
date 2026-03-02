@@ -6,6 +6,7 @@ use app\models\Assignments;
 use app\models\AssignmentsSearch;
 use app\models\Subjects;
 use app\models\User;
+use Yii;
 use yii\helpers\ArrayHelper;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -39,10 +40,16 @@ class AssignmentsController extends Controller
      *
      * @return string
      */
-    public function actionIndex()
+    public function actionIndex($subject_id = null)
     {
         $searchModel = new AssignmentsSearch();
-        $dataProvider = $searchModel->search($this->request->queryParams);
+        $queryParams = $this->request->queryParams;
+
+        if ($subject_id !== null) {
+            $queryParams['AssignmentsSearch']['subjectID'] = $subject_id;
+        }
+
+        $dataProvider = $searchModel->search($queryParams);
 
         return $this->render('index', [
             'searchModel' => $searchModel,
@@ -68,14 +75,17 @@ class AssignmentsController extends Controller
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return string|\yii\web\Response
      */
-    public function actionCreate()
+    public function actionCreate($subject_id = null)
     {
         $model = new Assignments();
-        $model->userID = \Yii::$app->user->id;
 
         if ($this->request->isPost) {
-            if ($model->load($this->request->post()) && $model->save()) {
-                return $this->redirect(['view', 'homeworkID' => $model->homeworkID]);
+            if ($model->load($this->request->post())) {
+                $model->userID = Yii::$app->user->id;
+                $model->subjectID = $subject_id;
+                if ($model->save()) {
+                    return $this->redirect(['view', 'homeworkID' => $model->homeworkID]);
+                }
             }
         } else {
             $model->loadDefaultValues();

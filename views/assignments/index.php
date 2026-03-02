@@ -18,26 +18,25 @@ use yii\grid\GridView;
     </p>
 
     <?= GridView::widget([
-        'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
-        'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
+            'dataProvider' => $dataProvider,
+            'filterModel' => $searchModel,
+            'columns' => [
+                    ['class' => 'yii\grid\SerialColumn'],
 
-            'homeworkID',
-            'title',
-            'description',
-            'isCompleted',
-            'due_date',
-            //'userID',
-            //'subjectID',
-            [
-                'class' => ActionColumn::className(),
-                'urlCreator' => function ($action, Assignments $model, $key, $index, $column) {
-                    return Url::toRoute([$action, 'homeworkID' => $model->homeworkID]);
-                 }
+                    'homeworkID',
+                    'title',
+                    'description',
+                    'isCompleted',
+                    'due_date',
+                //'userID',
+                //'subjectID',
+                    [
+                            'class' => ActionColumn::className(),
+                            'urlCreator' => function ($action, Assignments $model, $key, $index, $column) {
+                                return Url::toRoute([$action, 'homeworkID' => $model->homeworkID]);
+                            }
+                    ],
             ],
-        ],
     ]); ?>
-
 
 </div>
