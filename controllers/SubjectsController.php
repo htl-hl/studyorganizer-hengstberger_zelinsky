@@ -43,13 +43,11 @@ class SubjectsController extends Controller
     {
         $searchModel = new SubjectsSearch();
         $dataProvider = $searchModel->search($this->request->queryParams);
-        $subjects = Subjects::find()->all();
 
 
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
-            'subjects' => $subjects,
         ]);
     }
 
