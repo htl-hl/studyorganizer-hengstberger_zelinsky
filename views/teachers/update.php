@@ -5,7 +5,7 @@ use yii\helpers\Html;
 /** @var yii\web\View $this */
 /** @var app\models\Teachers $model */
 
-$this->title = Yii::t('app', 'Update Teachers: {name}', [
+$this->title = Yii::t('app', 'Update Teacher: {name}', [
     'name' => $model->teacherID,
 ]);
 ?>

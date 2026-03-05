@@ -7,7 +7,7 @@ use yii\helpers\Html;
 /** @var array $teachersList */
 /** @var app\models\Teachers[] $teachers */
 
-$this->title = Yii::t('app', 'Update Subjects: {name}', [
+$this->title = Yii::t('app', 'Update Subject: {name}', [
     'name' => $model->subjectname,
 ]);
 ?>
