@@ -45,8 +45,10 @@ class AssignmentsController extends Controller
         $searchModel = new AssignmentsSearch();
         $queryParams = $this->request->queryParams;
 
-        if ($subject_id !== null) {
-            $queryParams['AssignmentsSearch']['subjectID'] = $subject_id;
+        $queryParams['AssignmentsSearch']['userID'] = Yii::$app->user->id;
+
+        if ($_GET['subjectID'] !== null) {
+            $queryParams['AssignmentsSearch']['subjectID'] = $_GET['subjectID'];
         }
 
         $dataProvider = $searchModel->search($queryParams);
