@@ -43,10 +43,13 @@ class SubjectsController extends Controller
     {
         $searchModel = new SubjectsSearch();
         $dataProvider = $searchModel->search($this->request->queryParams);
+        $subjects = Subjects::find()->all();
+
 
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+            'subjects' => $subjects,
         ]);
     }
 
@@ -74,7 +77,7 @@ class SubjectsController extends Controller
 
         if ($this->request->isPost) {
             if ($model->load($this->request->post()) && $model->save()) {
-                return $this->redirect(['view', 'subjectID' => $model->subjectID]);
+                return $this->redirect(['/site/adminmain']);
             }
         } else {
             $model->loadDefaultValues();
@@ -102,7 +105,7 @@ class SubjectsController extends Controller
         $model = $this->findModel($subjectID);
 
         if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'subjectID' => $model->subjectID]);
+            return $this->redirect(['/site/adminmain']);
         }
 
         $teachers = Teachers::find()->all();

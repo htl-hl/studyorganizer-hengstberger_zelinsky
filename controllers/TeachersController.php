@@ -73,7 +73,7 @@ class TeachersController extends Controller
 
         if ($this->request->isPost) {
             if ($model->load($this->request->post()) && $model->save()) {
-                return $this->redirect(['view', 'teacherID' => $model->teacherID]);
+                return $this->redirect(['/site/adminmain']);
             }
         } else {
             $model->loadDefaultValues();
@@ -96,7 +96,7 @@ class TeachersController extends Controller
         $model = $this->findModel($teacherID);
 
         if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'teacherID' => $model->teacherID]);
+            return $this->redirect(['/site/adminmain']);
         }
 
         return $this->render('update', [
@@ -115,7 +115,7 @@ class TeachersController extends Controller
     {
         $this->findModel($teacherID)->delete();
 
-        return $this->redirect(['index']);
+        return $this->redirect(['/site/adminMain']);
     }
 
     /**
