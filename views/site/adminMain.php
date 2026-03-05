@@ -14,6 +14,7 @@ $this->title = 'Home';
 <div class="site-adminmain">
     <h1><?= Html::encode($this->title) ?></h1>
 
+    <?php if (!Yii::$app->user->isGuest && Yii::$app->user->identity->role === 'admin'): ?>
     <p>
         <?= Html::a(
                 '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-plus" viewBox="0 0 16 16">
@@ -33,6 +34,8 @@ $this->title = 'Home';
                 ['class' => 'btn btn-outline-secondary', 'encode' => false]
         ) ?>
 
+        <?php endif; ?>
+
         <?= Html::a(
                 '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-view-stacked" viewBox="0 0 16 16">
         <path d="M3 0h10a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2m0 1a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1zm0 8h10a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2m0 1a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1v-3a1 1 0 0 0-1-1z"/>
@@ -46,19 +49,21 @@ $this->title = 'Home';
             <div class="col-lg-3 col-md-6 col-sm-12 mt-4">
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title"><?= $subject->subjectname?></h5>
+                        <h5 class="card-title"><?= $subject->subjectname ?></h5>
                         <p class="card-text"> <?php foreach ($subject->teachers as $teacher): ?>
                         <p><?= $teacher->teachername ?></p>
                         <?php endforeach; ?>
                         </p>
                     </div>
-                    <div class="card-footer d-flex justify-content-between align-items-center">
+                    <div class="card-footer d-flex <?= (!Yii::$app->user->isGuest && Yii::$app->user->identity->role === 'admin') ? 'justify-content-between' : 'justify-content-center' ?> align-items-center">
                         <?= Html::a('To Subject', ['assignments/index', 'subjectID' => $subject->subjectID], ['class' => 'btn btn-outline-secondary']) ?>
-                        <div class="d-flex gap-2">
-                            <?= \yii\bootstrap5\Html::a($subject->editIconUpdate(), Url::to(['subjects/update', 'subjectID' => $subject->subjectID]), ['class' => 'btn btn-outline-secondary']) ?>
-                            <?= \yii\bootstrap5\Html::a($subject->deleteIconUpdate(), Url::to(['subjects/delete', 'subjectID' => $subject->subjectID]),
-                                    ['class' => 'btn btn-outline-secondary', 'data-method' => 'POST', 'data-confirm' => 'Möchtest du das Fach wirklich löschen']) ?>
-                        </div>
+                        <?php if (!Yii::$app->user->isGuest && Yii::$app->user->identity->role === 'admin'): ?>
+                            <div class="d-flex gap-2">
+                                <?= \yii\bootstrap5\Html::a($subject->editIconUpdate(), Url::to(['subjects/update', 'subjectID' => $subject->subjectID]), ['class' => 'btn btn-outline-secondary']) ?>
+                                <?= \yii\bootstrap5\Html::a($subject->deleteIconUpdate(), Url::to(['subjects/delete', 'subjectID' => $subject->subjectID]),
+                                        ['class' => 'btn btn-outline-secondary', 'data-method' => 'POST', 'data-confirm' => 'Möchtest du das Fach wirklich löschen']) ?>
+                            </div>
+                        <?php endif; ?>
                     </div>
                 </div>
             </div>
