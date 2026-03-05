@@ -45,17 +45,42 @@ class AssignmentsController extends Controller
         $searchModel = new AssignmentsSearch();
         $queryParams = $this->request->queryParams;
 
-        $queryParams['AssignmentsSearch']['userID'] = Yii::$app->user->id;
+        $userID = Yii::$app->user->id;
+        $isAdmin = !Yii::$app->user->isGuest && Yii::$app->user->identity->role === 'admin';
+        $filterSubjectID = isset($_GET['subjectID']) ? (int)$_GET['subjectID'] : null;
 
-        if ($_GET['subjectID'] !== null) {
-            $queryParams['AssignmentsSearch']['subjectID'] = $_GET['subjectID'];
+        $queryParams['AssignmentsSearch']['userID'] = $userID;
+
+        if ($filterSubjectID) {
+            $queryParams['AssignmentsSearch']['subjectID'] = $filterSubjectID;
         }
 
         $dataProvider = $searchModel->search($queryParams);
 
+        $subjectsQuery = Subjects::find();
+
+        if ($filterSubjectID) {
+            $subjectsQuery->andWhere(['subjectID' => $filterSubjectID]);
+        }
+
+        if ($isAdmin) {
+            $subjectsQuery->with(['assignments', 'assignments.user']);
+        } else {
+            $subjectsQuery->with([
+                'assignments' => function ($query) use ($userID) {
+                    $query->andWhere(['userID' => $userID]);
+                },
+                'assignments.user',
+            ]);
+        }
+
+        $subjects = $subjectsQuery->all();
+
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+            'subjects' => $subjects,
+            'userID' => $userID,
         ]);
     }
 
@@ -86,7 +111,7 @@ class AssignmentsController extends Controller
                 $model->userID = Yii::$app->user->id;
                 $model->subjectID = $_GET['subjectID'];
                 if ($model->save()) {
-                    return $this->redirect(['view', 'homeworkID' => $model->homeworkID]);
+                    return $this->redirect(['/site/adminmain']);
                 }
             }
         } else {
@@ -110,7 +135,7 @@ class AssignmentsController extends Controller
         $model = $this->findModel($homeworkID);
 
         if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'homeworkID' => $model->homeworkID]);
+            return $this->redirect(['/site/adminmain']);
         }
 
         return $this->render('update', [
