@@ -9,6 +9,7 @@ use yii\grid\GridView;
 /** @var yii\web\View $this */
 /** @var app\models\SubjectsSearch $searchModel */
 /** @var yii\data\ActiveDataProvider $dataProvider */
+/** @var \app\models\Subjects[] $subjects */
 
 $this->title = Yii::t('app', 'Subjects');
 ?>
@@ -16,28 +17,34 @@ $this->title = Yii::t('app', 'Subjects');
 
     <h1><?= Html::encode($this->title) ?></h1>
 
-    <p>
-        <?= Html::a(Yii::t('app', 'Create Subjects'), ['create'], ['class' => 'btn btn-outline-secondary']) ?>
-    </p>
+    <?php if (!Yii::$app->user->isGuest && Yii::$app->user->identity->role === 'admin'): ?>
+        <p>
+            <?= Html::a(Yii::t('app', 'Create Subjects'), ['create'], ['class' => 'btn btn-outline-secondary']) ?>
+        </p>
+    <?php endif; ?>
 
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
-
-    <?= GridView::widget([
-        'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
-        'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
-
-            'subjectID',
-            'subjectname',
-            [
-                'class' => ActionColumn::className(),
-                'urlCreator' => function ($action, Subjects $model, $key, $index, $column) {
-                    return Url::toRoute([$action, 'subjectID' => $model->subjectID]);
-                 }
-            ],
-        ],
-    ]); ?>
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">-</th>
+        </tr>
+        </thead>
+        <tbody>
+        <?php foreach ($subjects as $index => $subject): ?>
+            <tr>
+                <th scope="row"><?= $index + 1 ?></th>
+                <td><?= Html::encode($subject->subjectname) ?></td>
+                <td>
+                    <?= \yii\bootstrap5\Html::a($subject->editIconUpdate(), Url::to(['update', 'subjectID' => $subject->subjectID]), ['class' => 'btn btn-outline-secondary btn-sm']) ?>
+                    <?= \yii\bootstrap5\Html::a($subject->deleteIconUpdate(), Url::to(['delete', 'subjectID' => $subject->subjectID]), ['class' => 'btn btn-outline-secondary btn-sm', 'data-confirm' => 'Möchtest du diesen Lehrer wirklich löschen?', 'data-method' => 'post',
+                    ]) ?>
+                </td>
+            </tr>
+        <?php endforeach; ?>
+        </tbody>
+    </table>
 
 
 </div>

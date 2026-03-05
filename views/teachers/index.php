@@ -18,9 +18,11 @@ $this->title = Yii::t('app', 'Teachers');
 
     <h1><?= Html::encode($this->title) ?></h1>
 
-    <p>
-        <?= Html::a(Yii::t('app', 'Create Teachers'), ['create'], ['class' => 'btn btn-outline-secondary']) ?>
-    </p>
+    <?php if (!Yii::$app->user->isGuest && Yii::$app->user->identity->role === 'admin'): ?>
+        <p>
+            <?= Html::a(Yii::t('app', 'Create Teachers'), ['create'], ['class' => 'btn btn-outline-secondary']) ?>
+        </p>
+    <?php endif; ?>
 
     <table class="table">
         <thead>
