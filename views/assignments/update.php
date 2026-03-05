@@ -5,7 +5,7 @@ use yii\helpers\Html;
 /** @var yii\web\View $this */
 /** @var app\models\Assignments $model */
 
-$this->title = Yii::t('app', 'Update Assignments: {name}', [
+$this->title = Yii::t('app', 'Update Assignment: {name}', [
     'name' => $model->title,
 ]);
 ?>
