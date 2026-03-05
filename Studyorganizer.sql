@@ -8,7 +8,8 @@ CREATE TABLE Users (
     username varchar(255) NOT NULL,
     password varchar(255),
     accessToken varchar(255),
-    authKey varchar(255)
+    authKey varchar(255),
+    role varchar(20) NOT NULL DEFAULT 'user'
 );
 
 
