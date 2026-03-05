@@ -82,7 +82,7 @@ class AssignmentsController extends Controller
         if ($this->request->isPost) {
             if ($model->load($this->request->post())) {
                 $model->userID = Yii::$app->user->id;
-                $model->subjectID = $subject_id;
+                $model->subjectID = $_GET['subjectID'];
                 if ($model->save()) {
                     return $this->redirect(['view', 'homeworkID' => $model->homeworkID]);
                 }

@@ -14,7 +14,7 @@ use yii\grid\GridView;
 <div class="assignments-index">
 
     <p>
-        <?= Html::a(Yii::t('app', 'Create Assignments'), ['create'], ['class' => 'btn btn-outline-secondary']) ?>
+        <?= Html::a(Yii::t('app', 'Create Assignments'), ['create', 'subjectID' => $_GET['subjectID']], ['class' => 'btn btn-outline-secondary']) ?>
     </p>
 
     <?= GridView::widget([
