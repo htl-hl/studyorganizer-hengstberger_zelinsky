@@ -16,8 +16,6 @@ use yii\bootstrap5\ActiveForm;
 
     <?= $form->field($model, 'description')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'isCompleted')->checkbox(['style' => 'transform: scale(1.5);']) ?>
-
     <?= $form->field($model, 'due_date')->input('date', ['class' => 'form-control']) ?>
 
     <div class="form-group">
