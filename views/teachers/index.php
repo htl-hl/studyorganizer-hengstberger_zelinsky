@@ -39,11 +39,13 @@ $this->title = Yii::t('app', 'Teachers');
                 <th scope="row"><?= $index + 1 ?></th>
                 <td><?= Html::encode($teacher->teachername) ?></td>
                 <td><?= $teacher->isActive ? 'active' : 'not active' ?></td>
+                <?php if (!Yii::$app->user->isGuest && Yii::$app->user->identity->role === 'admin'): ?>
                 <td>
                     <?= \yii\bootstrap5\Html::a($teacher->editIconUpdate(), Url::to(['update', 'teacherID' => $teacher->teacherID]), ['class' => 'btn btn-outline-secondary btn-sm']) ?>
                     <?= \yii\bootstrap5\Html::a($teacher->deleteIconUpdate(), Url::to(['delete', 'teacherID' => $teacher->teacherID]), ['class' => 'btn btn-outline-secondary btn-sm', 'data-confirm' => 'Möchtest du diesen Lehrer wirklich löschen?', 'data-method' => 'post',
                     ]) ?>
                 </td>
+                <?php endif; ?>
             </tr>
         <?php endforeach; ?>
         </tbody>
