@@ -36,7 +36,8 @@ class Assignments extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['isCompleted', 'userID', 'subjectID'], 'default', 'value' => null],
+            [['userID', 'subjectID'], 'default', 'value' => null],
+            ['isCompleted', 'default', 'value' => 0],
             [['title', 'description', 'due_date'], 'required'],
             [['isCompleted', 'userID', 'subjectID'], 'integer'],
             [['due_date'], 'safe'],
