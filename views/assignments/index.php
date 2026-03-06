@@ -29,16 +29,16 @@ $iconPending = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" f
                 <?php endif; ?>
             </div>
             <hr>
-
             <?php if (empty($visibleAssignments)): ?>
                 <p class="text-muted">Keine Aufgaben vorhanden.</p>
             <?php else: ?>
                 <ul class="list-group">
                     <?php foreach ($visibleAssignments as $assignment): ?>
-                        <?php $dueDateClass = $assignment->getDueDateClass();
+                        <?php
                         $statusClass = $assignment->isCompleted
                                 ? 'list-group-item-success'
-                                : ($dueDateClass ? $dueDateClass : ''); ?>
+                                : $assignment->getDueDateClass();
+                        ?>
                         <li class="list-group-item <?= $statusClass ?>">
                             <div class="d-flex justify-content-between align-items-start">
                                 <div>
@@ -53,37 +53,16 @@ $iconPending = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" f
                                     </small>
                                 </div>
                                 <?php if ($assignment->userID == $userID && !$isAdmin): ?>
-                                        <div class="d-flex gap-2">
-                                            <?php if (!$assignment->isCompleted): ?>
-                                                <?= \yii\bootstrap5\Html::a(
-                                                    $assignment->editIconUpdate(),
-                                                    Url::to(['update', 'homeworkID' => $assignment->homeworkID]),
-                                                    ['class' => 'btn btn-outline-secondary btn-sm']
-                                                ) ?>
-                                                <?= \yii\bootstrap5\Html::a(
-                                                    $assignment->deleteIconUpdate(),
-                                                    Url::to(['delete', 'homeworkID' => $assignment->homeworkID]),
-                                                    [
-                                                        'class'        => 'btn btn-outline-danger btn-sm',
-                                                        'data-confirm' => 'Aufgabe wirklich löschen?',
-                                                        'data-method'  => 'post',
-                                                    ]
-                                                ) ?>
-                                                <?= \yii\bootstrap5\Html::a(
-                                                    '✓ Erledigt',
-                                                    Url::to(['complete', 'homeworkID' => $assignment->homeworkID]),
-                                                    [
-                                                        'class'        => 'btn btn-success btn-sm',
-                                                        'data-confirm' => 'Aufgabe als erledigt markieren?',
-                                                        'data-method'  => 'post',
-                                                    ]
-                                                ) ?>
-                                            <?php else: ?>
-                                                <span class="badge bg-success">Erledigt</span>
-                                            <?php endif; ?>
-                                        </div>
-                                    <?php endif; ?>
-                                </div>
+                                    <div class="d-flex gap-2 ms-3 flex-shrink-0">
+                                        <?php if (!$assignment->isCompleted): ?>
+                                            <?= \yii\bootstrap5\Html::a($assignment->editIconUpdate(), Url::to(['update', 'homeworkID' => $assignment->homeworkID]), ['class' => 'btn btn-outline-secondary btn-sm']) ?>
+                                            <?= \yii\bootstrap5\Html::a($assignment->deleteIconUpdate(), Url::to(['delete', 'homeworkID' => $assignment->homeworkID]), ['class' => 'btn btn-outline-danger btn-sm', 'data-confirm' => 'Aufgabe wirklich löschen?', 'data-method'  => 'post',]) ?>
+                                            <?= \yii\bootstrap5\Html::a('✓ Erledigt', Url::to(['complete', 'homeworkID' => $assignment->homeworkID]), ['class' => 'btn btn-success btn-sm', 'data-confirm' => 'Aufgabe als erledigt markieren?', 'data-method'  => 'post',]) ?>
+                                        <?php else: ?>
+                                            <span class="badge bg-success">Erledigt</span>
+                                        <?php endif; ?>
+                                    </div>
+                                <?php endif; ?>
                             </div>
                         </li>
                     <?php endforeach; ?>

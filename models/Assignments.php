@@ -117,7 +117,7 @@ class Assignments extends \yii\db\ActiveRecord
 
         if ($past || $diff < 1) return 'list-group-item-danger';
         if ($diff < 7) return 'list-group-item-warning';
-        if ($diff < 14) return 'list-group-item-primary';
+        if ($diff < 14 && $diff >= 7) return 'list-group-item-primary';
         return '';
     }
 }
