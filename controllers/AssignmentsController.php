@@ -29,6 +29,7 @@ class AssignmentsController extends Controller
                     'class' => VerbFilter::className(),
                     'actions' => [
                         'delete' => ['POST'],
+                        'complete' => ['POST'],  // ← neu
                     ],
                 ],
             ]
@@ -171,5 +172,19 @@ class AssignmentsController extends Controller
         }
 
         throw new NotFoundHttpException(Yii::t('app', 'The requested page does not exist.'));
+    }
+
+    public function actionComplete($homeworkID)
+    {
+        $model = $this->findModel($homeworkID);
+
+        if ($model->isCompleted) {
+            return $this->redirect(['index']);
+        }
+
+        $model->isCompleted = 1;
+        $model->save(false); // false = Validierung überspringen
+
+        return $this->redirect(['index']);
     }
 }
