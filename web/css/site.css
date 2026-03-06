@@ -197,38 +197,6 @@ h1, h2, h3, h4, h5, h6 {
     padding: 3px 7px;
 }
 
-.table {
-    border: 1.5px solid var(--border);
-    border-radius: var(--radius-lg);
-    overflow: hidden;
-    border-collapse: separate;
-    border-spacing: 0;
-}
-
-.table thead tr {
-    background-color: var(--ink);
-}
-
-.table thead th {
-    font-family: 'Outfit', sans-serif;
-    font-size: 0.78rem;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    padding: 0.85rem 1rem;
-    border: none !important;
-}
-
-.table tbody td,
-.table tbody th {
-    padding: 0.8rem 1rem;
-    border: none;
-    border-bottom: 1px solid var(--border);
-    vertical-align: middle;
-    font-size: 0.9rem;
-}
-
-
 .card.border-secondary {
     border: 1.5px solid var(--border) !important;
     border-radius: var(--radius-lg);
@@ -257,4 +225,12 @@ h1, h2, h3, h4, h5, h6 {
     border-color: var(--ink);
     box-shadow: 2px 2px 0 var(--accent);
     background: #fff;
+}
+.control-label {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 700;
+    font-size: 0.82rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
 }
