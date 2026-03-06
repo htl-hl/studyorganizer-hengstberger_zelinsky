@@ -105,4 +105,18 @@ class Assignments extends \yii\db\ActiveRecord
 </svg>';
     }
 
+    public function getDueDateClass(): string
+    {
+        if ($this->isCompleted) return 'list-group-item-success';
+
+        $now = new \DateTime();
+        $due = new \DateTime($this->due_date);
+        $past = $due < $now;
+        $diff = (int)$now->diff($due)->days;
+
+        if ($past || $diff < 1) return 'list-group-item-danger';
+        if ($diff < 7) return 'list-group-item-warning';
+        if ($diff < 14) return 'list-group-item-primary';
+        return '';
+    }
 }
