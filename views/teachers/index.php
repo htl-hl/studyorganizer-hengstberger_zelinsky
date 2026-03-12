@@ -30,7 +30,9 @@ $this->title = Yii::t('app', 'Teachers');
             <th scope="col">#</th>
             <th scope="col">Name</th>
             <th scope="col">Status</th>
-            <th scope="col">-</th>
+            <?php if (!Yii::$app->user->isGuest && Yii::$app->user->identity->role === 'admin'): ?>
+                <th scope="col">-</th>
+            <?php endif; ?>
         </tr>
         </thead>
         <tbody>
