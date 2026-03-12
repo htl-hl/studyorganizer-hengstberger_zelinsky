@@ -101,10 +101,8 @@ class Subjects extends \yii\db\ActiveRecord
     {
         parent::afterSave($insert, $changedAttributes);
 
-        // Lösche alle bestehenden Verknüpfungen für dieses Fach
         TeacherHasSubject::deleteAll(['subjectID' => $this->subjectID]);
 
-        // Füge die neuen Verknüpfungen hinzu
         if (is_array($this->teacherIds)) {
             foreach ($this->teacherIds as $teacherId) {
                 $link = new TeacherHasSubject();
@@ -118,7 +116,6 @@ class Subjects extends \yii\db\ActiveRecord
     public function afterFind()
     {
         parent::afterFind();
-        // Lade die IDs der verknüpften Lehrer in das Array
         $this->teacherIds = ArrayHelper::getColumn($this->teachers, 'teacherID');
     }
 
