@@ -53,6 +53,7 @@ class Subjects extends \yii\db\ActiveRecord
 
     public function beforeDelete()
     {
+        Assignments::deleteAll(['subjectID' => $this->subjectID]);
         TeacherHasSubject::deleteAll(['subjectID' => $this->subjectID]);
         return parent::beforeDelete();
     }

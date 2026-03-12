@@ -115,7 +115,7 @@ class TeachersController extends Controller
     {
         $this->findModel($teacherID)->delete();
 
-        return $this->redirect(['/site/adminMain']);
+        return $this->redirect(['/site/adminmain']);
     }
 
     /**
