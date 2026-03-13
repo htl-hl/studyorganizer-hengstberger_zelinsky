@@ -51,10 +51,10 @@ $this->title = 'Home';
                 ['class' => 'btn btn-outline-secondary', 'encode' => false]
         ) ?>
     </p>
-    <div class="row">
+    <div class="row align-items-stretch">
         <?php foreach ($subjects as $subject): ?>
             <div class="col-lg-3 col-md-6 col-sm-12 mt-4">
-                <div class="card">
+                <div class="card h-100">
                     <div class="card-body">
                         <h5 class="card-title"><?= $subject->subjectname ?></h5>
                         <p class="card-text"> <?php foreach ($subject->teachers as $teacher): ?>
