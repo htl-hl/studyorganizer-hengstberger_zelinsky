@@ -38,8 +38,7 @@ $this->title = Yii::t('app', 'Subjects');
                 <td><?= Html::encode($subject->subjectname) ?></td>
                 <td>
                     <?= \yii\bootstrap5\Html::a($subject->editIconUpdate(), Url::to(['update', 'subjectID' => $subject->subjectID]), ['class' => 'btn btn-outline-secondary btn-sm']) ?>
-                    <?= \yii\bootstrap5\Html::a($subject->deleteIconUpdate(), Url::to(['delete', 'subjectID' => $subject->subjectID]), ['class' => 'btn btn-outline-secondary btn-sm', 'data-confirm' => 'Möchtest du diesen Lehrer wirklich löschen?', 'data-method' => 'post',
-                    ]) ?>
+                    <?= \yii\bootstrap5\Html::a($subject->deleteIconUpdate(), Url::to(['delete', 'subjectID' => $subject->subjectID]), ['class' => 'btn btn-outline-secondary btn-sm', 'data-confirm' => 'Möchtest du diesen Lehrer wirklich löschen?', 'data-method' => 'post',]) ?>
                 </td>
             </tr>
         <?php endforeach; ?>

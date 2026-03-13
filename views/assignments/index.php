@@ -35,9 +35,7 @@ $iconPending = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" f
                 <ul class="list-group">
                     <?php foreach ($visibleAssignments as $assignment): ?>
                         <?php
-                        $statusClass = $assignment->isCompleted
-                                ? 'list-group-item-success'
-                                : $assignment->getDueDateClass();
+                        $statusClass = $assignment->getDueDateClass();
                         ?>
                         <li class="list-group-item <?= $statusClass ?>">
                             <div class="d-flex justify-content-between align-items-start">
