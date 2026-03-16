@@ -12,7 +12,7 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'teachername')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'teachername')->textInput(['maxlength' => true, 'style' => 'width: 400px;']) ?>
 
     <?= $form->field($model, 'isActive')->checkbox(['style' => 'transform: scale(1.5);', 'checked' => true]) ?>
 

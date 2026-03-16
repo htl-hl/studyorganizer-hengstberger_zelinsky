@@ -14,7 +14,7 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'subjectname')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'subjectname')->textInput(['maxlength' => true, 'style' => 'width: 400px;']) ?>
 
     <?= $form->field($model, 'teacherIds')->checkboxList($teachersList, [
             'item' => function($index, $label, $name, $checked, $value) use ($teachers) {
