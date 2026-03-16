@@ -47,7 +47,7 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
                                                 </svg>', 'url' => ['/site/index'], 'encode' => false]
                             : null,
                     !Yii::$app->user->isGuest
-                            ? ['label' => 'Home', 'url' => ['/site/adminmain']]
+                            ? ['label' => 'Home', 'url' => ['/site/main']]
                             : null,
             ])
     ]);

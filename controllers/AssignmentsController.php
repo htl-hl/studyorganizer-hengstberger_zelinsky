@@ -112,7 +112,7 @@ class AssignmentsController extends Controller
                 $model->userID = Yii::$app->user->id;
                 $model->subjectID = $_GET['subjectID'];
                 if ($model->save()) {
-                    return $this->redirect(['/site/adminmain']);
+                    return $this->redirect(['/site/main']);
                 }
             }
         } else {
@@ -136,7 +136,7 @@ class AssignmentsController extends Controller
         $model = $this->findModel($homeworkID);
 
         if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
-            return $this->redirect(['/site/adminmain']);
+            return $this->redirect(['/site/main']);
         }
 
         return $this->render('update', [
@@ -155,7 +155,7 @@ class AssignmentsController extends Controller
     {
         $this->findModel($homeworkID)->delete();
 
-        return $this->redirect(['index']);
+        return $this->redirect(['/site/main']);
     }
 
     /**
@@ -179,12 +179,12 @@ class AssignmentsController extends Controller
         $model = $this->findModel($homeworkID);
 
         if ($model->isCompleted) {
-            return $this->redirect(['index']);
+            return $this->redirect(['/site/main']);
         }
 
         $model->isCompleted = 1;
         $model->save(false); // false = Validierung überspringen
 
-        return $this->redirect(['index']);
+        return $this->redirect(['/site/main']);
     }
 }
