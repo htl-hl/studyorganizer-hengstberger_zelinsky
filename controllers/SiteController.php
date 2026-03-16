@@ -58,12 +58,12 @@ class SiteController extends Controller
     public function actionIndex()
     {
         if (!Yii::$app->user->isGuest) {
-            return $this->redirect(['site/adminmain']);
+            return $this->redirect(['site/main']);
         }
 
         $model = new LoginForm();
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
-            return $this->redirect(['site/adminmain']);
+            return $this->redirect(['site/main']);
         }
 
         $model->password = '';
@@ -72,14 +72,14 @@ class SiteController extends Controller
         ]);
     }
 
-    public function actionAdminmain()
+    public function actionMain()
     {
         if (Yii::$app->user->isGuest) {
             return $this->redirect(['site/index']);
         }
 
         $subjects = Subjects::find()->with('teachers')->all();
-        return $this->render('adminMain', [
+        return $this->render('main', [
             'subjects' => $subjects,
         ]);
     }
@@ -87,7 +87,7 @@ class SiteController extends Controller
     public function actionRegister()
     {
         if (!Yii::$app->user->isGuest) {
-            return $this->redirect(['site/adminmain']);
+            return $this->redirect(['site/main']);
         }
 
         $model = new User();
@@ -101,7 +101,7 @@ class SiteController extends Controller
 
             if ($model->save(false)) {
                 Yii::$app->user->login($model, 3600 * 24 * 30);
-                return $this->redirect(['site/adminmain']);
+                return $this->redirect(['site/main']);
             }
         }
 
