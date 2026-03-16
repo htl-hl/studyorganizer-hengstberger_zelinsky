@@ -112,7 +112,7 @@ class AssignmentsController extends Controller
                 $model->userID = Yii::$app->user->id;
                 $model->subjectID = $_GET['subjectID'];
                 if ($model->save()) {
-                    return $this->redirect(['/site/main']);
+                    return $this->redirect(['index']);
                 }
             }
         } else {
@@ -136,7 +136,7 @@ class AssignmentsController extends Controller
         $model = $this->findModel($homeworkID);
 
         if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
-            return $this->redirect(['/site/main']);
+            return $this->redirect(['index']);
         }
 
         return $this->render('update', [
@@ -155,7 +155,7 @@ class AssignmentsController extends Controller
     {
         $this->findModel($homeworkID)->delete();
 
-        return $this->redirect(['/site/main']);
+        return $this->redirect(['index']);
     }
 
     /**
